@@ -27,11 +27,13 @@ export default function SignScreen({ route, navigation, title, buttonType, place
 
         try {
             const url = await getURL();
-            const request = await fetch(`${url}/api/authlogin`, options);
-            const { success, token } = await request.json();
-            if (success) {
-                await AsyncStorage.setItem("token", token);
-                await AsyncStorage.getItem("logged", true);
+            console.log(url, email, password);
+            const request = await fetch(`${url}/api/auth/login`, options);
+            const response = await request.json();
+            console.log(await response);
+            if (await response?.success) {
+                await AsyncStorage.setItem("token", await response?.token);
+                await AsyncStorage.setItem("logged", JSON.stringify(true));
                 navigation.navigate(nextScreen);
             }
             
@@ -67,7 +69,10 @@ export default function SignScreen({ route, navigation, title, buttonType, place
             const { success, token } = await request.json();
             if (success) {
                 await AsyncStorage.setItem("token", token);
-                await AsyncStorage.getItem("logged", true);
+                await AsyncStorage.setItem("logged", true);
+                await AsyncStorage.setItem("username", username);
+                await AsyncStorage.setItem("email", email);
+                await AsyncStorage.setItem("name", name);
                 navigation.navigate(nextScreen);
             }
         } catch (e) {
@@ -133,7 +138,9 @@ const styles = StyleSheet.create({
         marginVertical: 50,
         fontSize: 30,
         fontWeight: 'bold',
-        color: "rgba(255, 255, 255, .7)"
+        color: "rgba(255, 255, 255, .7)",
+        borderWidth: 0,
+        borderColor: "transparent",
     },
 
     title: {

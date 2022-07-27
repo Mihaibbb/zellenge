@@ -21,6 +21,8 @@ export default class Account extends Component {
           selectedStartDate: date,
         });
       }
+
+      
   render() {
     const { selectedStartDate } = this.state;
     const startDate = selectedStartDate ? selectedStartDate.toString() : '';

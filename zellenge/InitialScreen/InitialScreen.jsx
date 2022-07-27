@@ -11,7 +11,7 @@ export default function InitialScreen({ route, navigation }) {
             >
                
 
-                {Platform.OS === "ios" ? (
+                {Platform.OS === "ios" || Platform.OS === "web" ? (
                     <View style={styles.loginContainer}>
                         <Text style={styles.title}>Welcome to <Text style={styles.titleName}>Zellenge!</Text></Text>
 
