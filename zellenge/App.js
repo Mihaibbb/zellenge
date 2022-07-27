@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import InitialScreen from './InitialScreen/InitialScreen';
 import SignScreen from './Screens/SignScreen';
+import Account from './account/Account';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,11 +13,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName='Initial' 
+        initialRouteName='Account'
         screenOptions={{
           headerShown: false
         }}
       >
+        <Stack.Screen name="Account" component={Account}/>
         <Stack.Screen name="Initial" component={InitialScreen}/>
         <Stack.Screen name="EmailLogin">
           {(props) => <SignScreen {...props} title="Please enter here your email: " placeholder="Your email" buttonType="continue" type="email" nextScreen="PaswordLogin" />}
