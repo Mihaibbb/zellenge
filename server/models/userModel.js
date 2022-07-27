@@ -50,8 +50,16 @@ const userSchema = new mongoose.Schema({
         type: [mongoose.Schema.ObjectId],
     },
 
-    tasks: {
+    videos_recieved: {
         type: mongoose.Schema.Types.Mixed
+    },
+
+    videos_sent: {
+        type: mongoose.Schema.Types.Mixed
+    },
+
+    badges: {
+        type: String
     },
 
     resetPasswordToken: String,

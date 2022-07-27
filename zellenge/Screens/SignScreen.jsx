@@ -3,36 +3,92 @@ import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button, Platform, StyleSheet, Touchable, View, Text, TextInput, TouchableOpacity } from "react-native";
 import colors from "../colors/Colors";
+import getURL from "../address/GetAddress";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SignScreen({ route, navigation, title, buttonType, placeholder,  nextScreen, type }) { 
     
-    
+    const params = route.params;
 
     const [ inputValue, setInputValue ] = useState("");
 
-    const login = async () => {
+    const login = async (params) => {
+        const { email, password } = params;
         const options = {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                
+                email,
+                password
             })
         };
+
+        try {
+            const url = await getURL();
+            console.log(url, email, password);
+            const request = await fetch(`${url}/api/auth/login`, options);
+            const response = await request.json();
+            console.log(await response);
+            if (await response?.success) {
+                await AsyncStorage.setItem("token", await response?.token);
+                await AsyncStorage.setItem("logged", JSON.stringify(true));
+                navigation.navigate(nextScreen);
+            }
+            
+        } catch (e) {
+            console.log(e);
+        }
+      
+        
     };
 
-    const signup = async () => {
+    const signup = async (params) => {
+        console.log("signup");
+        const { email, password, name, username } = params;
+        console.log(params.email);
         const options = {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                
+                email,
+                password,
+                name,
+                username
             })
         };
 
+        try {
+            const url = await getURL();
+        
+            const request = await fetch(`${url}/api/auth/register`, options);
+            console.log("after");
+            const { success, token } = await request.json();
+            if (success) {
+                await AsyncStorage.setItem("token", token);
+                await AsyncStorage.setItem("logged", true);
+                await AsyncStorage.setItem("username", username);
+                await AsyncStorage.setItem("email", email);
+                await AsyncStorage.setItem("name", name);
+                navigation.navigate(nextScreen);
+            }
+        } catch (e) {
+            console.log(e);      
+        }
+        
+        
+    };  
+
+    const nextPress = async () => {
+        if (!inputValue || !inputValue.length) return;
+        if (type === "email" && (!inputValue.includes("@") || !inputValue.includes("."))) return;
+        const newParams = {...params};
+        newParams[type] = inputValue;
+        if (type === "password" && inputValue.length < 8) return;
+        buttonType === "Continue" ? navigation.navigate(nextScreen, newParams) : buttonType === "Login" ? await login(newParams) : buttonType === "Signup" ? await signup(newParams) : null;
     };  
     
     return (
@@ -48,11 +104,11 @@ export default function SignScreen({ route, navigation, title, buttonType, place
                 </View>
              
                 {Platform.OS === "ios" ? (
-                    <TouchableOpacity style={styles.button} onPress={async () => buttonType === "Continue" ? navigation.navigate(nextScreen) : buttonType === "Login" ? await login() : buttonType === "Sign Up" ? await signup() : null}>
+                    <TouchableOpacity style={styles.button} onPress={async () => await nextPress()}>
                         <Text style={styles.textContent}>{ buttonType }</Text>
                     </TouchableOpacity>
                 ) : Platform.OS === "android" ? (
-                    <Button style={styles.button} title={ buttonType } onPress={async () => buttonType === "Continue" ? navigation.navigate(nextScreen) : buttonType === "Login" ? await login() : buttonType === "Sign Up" ? await signup() : null} />
+                    <Button style={styles.button} title={ buttonType } onPress={async () => await nextPress()} />
                 ) : null}
             </LinearGradient>
         </View>
@@ -82,7 +138,9 @@ const styles = StyleSheet.create({
         marginVertical: 50,
         fontSize: 30,
         fontWeight: 'bold',
-        color: "rgba(255, 255, 255, .7)"
+        color: "rgba(255, 255, 255, .7)",
+        borderWidth: 0,
+        borderColor: "transparent",
     },
 
     title: {

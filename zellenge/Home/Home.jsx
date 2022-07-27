@@ -31,7 +31,7 @@ const Home = () => {
                       maxValue={500}
                       title={'ZENPOINTS'}
                       subtitle={'Silver'}
-                      subtitleColor={'rgba(255,255,255,0.75)'}
+                      subtitleColor={'rgb(255,255,255,0.75)'}
                       titleColor={'#7a62d8'}
                       titleStyle={{fontSize: 15}}
                       progressValueColor={'#fff'}

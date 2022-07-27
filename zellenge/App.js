@@ -7,24 +7,33 @@ import InitialScreen from './InitialScreen/InitialScreen';
 import SignScreen from './Screens/SignScreen';
 import Account from './account/Account';
 import Home from './Home/Home';
+<<<<<<< HEAD
 import Navbar from './navbar/Navbar';
+=======
+import ChallengesGiven from './Challenges/ChallengesGiven';
+import ChallengesRecieved from './Challenges/ChallengesRecieved';
+>>>>>>> a1b84817bd05fb42efc18b35f3c34ee0ea84ec1f
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(null);
 
   useEffect(() => {
     (async () => {
-      setIsLogged(await AsyncStorage.getItem("logged"));
+      setIsLogged(JSON.parse(await AsyncStorage.getItem("logged")));
     })();
   }, []);
 
-  return (
+  return isLogged !== null && (
     <NavigationContainer>
       <Stack.Navigator 
+<<<<<<< HEAD
         initialRouteName={isLogged ? 'Navbar' : 'Navbar'}
+=======
+        initialRouteName={!isLogged ? 'ChallengesGiven' : 'ChallengesGiven'}
+>>>>>>> a1b84817bd05fb42efc18b35f3c34ee0ea84ec1f
         screenOptions={{
           headerShown: false
         }}
@@ -42,11 +51,11 @@ export default function App() {
         </Stack.Screen>
 
         <Stack.Screen name="NameSignup">
-          {(props) => <SignScreen {...props} title="What's your name?" placeholder="Your name..." buttonType="Continue" type="text" nextScreen="UsernameSignup" />}
+          {(props) => <SignScreen {...props} title="What's your name?" placeholder="Your name..." buttonType="Continue" type="name" nextScreen="UsernameSignup" />}
         </Stack.Screen>
 
         <Stack.Screen name="UsernameSignup">
-          {(props) => <SignScreen {...props} title="What's your username? " placeholder="Your username..." buttonType="Continue" type="text" nextScreen="EmailSignup" />}
+          {(props) => <SignScreen {...props} title="What's your username? " placeholder="Your username..." buttonType="Continue" type="username" nextScreen="EmailSignup" />}
         </Stack.Screen>
 
         <Stack.Screen name="EmailSignup">
@@ -57,7 +66,11 @@ export default function App() {
           {(props) => <SignScreen {...props} title="What's your password? " placeholder="Your password..." buttonType="Signup" type="password" nextScreen="Home" />}
         </Stack.Screen>
 
-        <Stack.Screen name="Home" component={Home}/>
+        <Stack.Screen name="Home" component={Home} />
+
+        <Stack.Screen name="ChallengesGiven" component={ChallengesGiven} />
+
+        <Stack.Screen name="ChallengesRecieved" component={ChallengesRecieved} />
 
       </Stack.Navigator>
     </NavigationContainer>
