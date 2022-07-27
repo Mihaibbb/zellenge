@@ -23,7 +23,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName={isLogged ? 'Home' : 'Initial'}
+        initialRouteName={isLogged ? 'Account' : 'Account'}
         screenOptions={{
           headerShown: false
         }}

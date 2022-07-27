@@ -1,30 +1,72 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, View, Text, Pressable  } from 'react-native';
+import { Button, StyleSheet, View, Text, Pressable, Image  } from 'react-native';
+import CalendarPicker from 'react-native-calendar-picker';
+import { LinearGradient } from "expo-linear-gradient";
+import colors from "../colors/Colors";
+import Moment from 'moment';
+import photo from '../img/nouserphoto.png'; 
+
 
 export default class Account extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+          selectedStartDate: null,
+        };
+        this.onDateChange = this.onDateChange.bind(this);
+      }
+    
+      onDateChange(date) {
+        this.setState({
+          selectedStartDate: date,
+        });
+      }
   render() {
+    const { selectedStartDate } = this.state;
+    const startDate = selectedStartDate ? selectedStartDate.toString() : '';
     return (
         
       <View style={styles.container}>
 
-       
+            <View style={styles.centru}>
+              <Image source={photo} style={styles.poza}/> 
+            </View>
             <Text style={styles.titlu}>Numele tau</Text>
             <Text style={styles.username}>@username </Text>
             
+          <Pressable onPress={this._onPressButton} style={styles.buttonx}
+            color="#202020"
 
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={this._onPressButton}
-            title="Edit my Profile" 
-            color="#fffffff"
-          />
-        </View>
-        <View style={styles.alternativeLayoutButtonContainer}>
+          >
+            <Text style={styles.profil} >EDIT MY PROFILE</Text>
+          </Pressable>
+
         <Pressable style={styles.button} >
-      <Text style={styles.text}>Your Memories</Text>
-    </Pressable>
+                <Text style={styles.text}>Your Badges</Text>
+            </Pressable>
+
+            <Pressable style={styles.button} >
+                <Text style={styles.text}>Your Memories</Text>
+            </Pressable>
+        
+        <View style={styles.calendar}>
+             <LinearGradient 
+                colors={[colors.amore, colors.night]}
+                style={[styles.calendar]}>
+    
+                    <CalendarPicker
+                    textStyle={{color: 'white'}}
+                    todayTextStyle={{fontWeight: 'bold', color:'black'}}
+                    selectedDayColor="rgba(0, 0, 0, .45)"
+                    selectedDayTextColor="white"
+                    
+                onDateChange={this.onDateChange}
+                    />
+             </LinearGradient>
+        <View>
+          <Text>SELECTED DATE:{ startDate }</Text>
         </View>
+      </View>
       </View>
     );
   }
@@ -34,11 +76,31 @@ const styles = StyleSheet.create({
   container: {
    flex: 1,
    justifyContent: 'center',
-   backgroundColor: '#212121'
+   backgroundColor: 'black'
+  },
+  profil:{
+    marginLeft:20,
+    marginBottom:1,
+    fontSize: 15,
+    color: 'white',
+    fontWeight: "bold"
+  },
+  poza: {
+    width: 200,
+    height: 200,
+    borderRadius: 200/2,
+    marginBottom:20,
+    marginLeft:15
+  },
+  centru: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
   },
   titlu: {
     marginLeft:20,
-    marginBottom:5,
+    marginBottom:1,
     fontSize: 20,
     color: 'white',
     fontWeight: "bold"
@@ -50,7 +112,8 @@ const styles = StyleSheet.create({
     fontWeight: "300"
   },
   buttonContainer: {
-    margin: 20
+    margin: 20,
+    borderRadius:90
   },
   text:{
     fontSize: 16,
@@ -60,6 +123,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   button:{
+    marginTop:15,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
@@ -69,9 +133,26 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 50
   },
+  buttonx:{
+    marginTop:15,
+    display:'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 'auto',
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "#202020",
+    borderRadius: 50
+  },
   alternativeLayoutButtonContainer: {
     margin: 20,
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  calendar: {
+    borderRadius: 10,
+    defaultBackgroundColor: 'black',
+    margin: 5
   }
 });
