@@ -40,11 +40,11 @@ export default function App() {
         </Stack.Screen>
 
         <Stack.Screen name="NameSignup">
-          {(props) => <SignScreen {...props} title="What's your name?" placeholder="Your name..." buttonType="Continue" type="text" nextScreen="UsernameSignup" />}
+          {(props) => <SignScreen {...props} title="What's your name?" placeholder="Your name..." buttonType="Continue" type="name" nextScreen="UsernameSignup" />}
         </Stack.Screen>
 
         <Stack.Screen name="UsernameSignup">
-          {(props) => <SignScreen {...props} title="What's your username? " placeholder="Your username..." buttonType="Continue" type="text" nextScreen="EmailSignup" />}
+          {(props) => <SignScreen {...props} title="What's your username? " placeholder="Your username..." buttonType="Continue" type="username" nextScreen="EmailSignup" />}
         </Stack.Screen>
 
         <Stack.Screen name="EmailSignup">

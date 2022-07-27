@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Platform, Touchable, TouchableOpacity, Button} from "react-native";
+import { View, StyleSheet, Text, Platform, Touchable, TouchableOpacity, Button, Pressable} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import colors from "../colors/Colors";
 
@@ -28,8 +28,8 @@ export default function InitialScreen({ route, navigation }) {
                     <View style={styles.loginContainer}>
                         <Text style={styles.title}>Welcome to Zellenge</Text>
 
-                        <Button title="Login" onPress={() => navigation.navigate("EmailLogin")} />
-                        <Button title="Get started" onPress={() => navigation.navigate("NameSignup")} />
+                        <Pressable title="Login" onPress={() => navigation.navigate("EmailLogin")} />
+                        <Pressable title="Get started" onPress={() => navigation.navigate("NameSignup")} />
                     </View>
                 )}
             </LinearGradient>
