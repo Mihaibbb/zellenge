@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, View, Text, Pressable, Image  } from 'react-native';
+import { Button, StyleSheet, View, Text, Pressable, Image, ScrollView  } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import { LinearGradient } from "expo-linear-gradient";
 import colors from "../colors/Colors";
@@ -26,7 +26,7 @@ export default class Account extends Component {
     const startDate = selectedStartDate ? selectedStartDate.toString() : '';
     return (
         
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
 
             <View style={styles.centru}>
               <Image source={photo} style={styles.poza}/> 
@@ -41,7 +41,7 @@ export default class Account extends Component {
             <Text style={styles.profil} >EDIT MY PROFILE</Text>
           </Pressable>
 
-        <Pressable style={styles.button} >
+        <Pressable style={styles.badges} >
                 <Text style={styles.text}>Your Badges</Text>
             </Pressable>
 
@@ -67,15 +67,13 @@ export default class Account extends Component {
           <Text>SELECTED DATE:{ startDate }</Text>
         </View>
       </View>
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-   flex: 1,
-   justifyContent: 'center',
    backgroundColor: 'black'
   },
   profil:{
@@ -124,6 +122,18 @@ const styles = StyleSheet.create({
   },
   button:{
     marginTop:15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'white',
+    borderRadius: 50
+  },
+  badges:{
+    marginTop:15,
+    marginBottom:450,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,

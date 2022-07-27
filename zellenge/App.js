@@ -7,6 +7,7 @@ import InitialScreen from './InitialScreen/InitialScreen';
 import SignScreen from './Screens/SignScreen';
 import Account from './account/Account';
 import Home from './Home/Home';
+import Navbar from './navbar/Navbar';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,13 +24,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName={isLogged ? 'Account' : 'Account'}
+        initialRouteName={isLogged ? 'Navbar' : 'Navbar'}
         screenOptions={{
           headerShown: false
         }}
       >
     
         <Stack.Screen name="Initial" component={InitialScreen}/>
+        <Stack.Screen name="Initial" component={Navbar}/>
         <Stack.Screen name="Account" component={Account}/>
         <Stack.Screen name="EmailLogin">
           {(props) => <SignScreen {...props} title="What's your email? " placeholder="Your email" buttonType="Continue" type="email" nextScreen="PasswordLogin" />}
