@@ -4,6 +4,7 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 import { LinearGradient } from "expo-linear-gradient";
 import colors from "../colors/Colors";
 import Navbar from '../navbar/Navbar';
+import Feather from "@expo/vector-icons/Feather";
 
 const Home = ({route, navigation}) => {
   return (
@@ -23,8 +24,6 @@ const Home = ({route, navigation}) => {
           
               <View style={styles.card}>
               
-               
-
                   <CircularProgress
                       radius={120}
                       style={styles.cerc}
@@ -32,7 +31,7 @@ const Home = ({route, navigation}) => {
                       maxValue={500}
                       title={'ZENPOINTS'}
                       subtitle={'Silver'}
-                      subtitleColor={'rgb(255,255,255,0.75)'}
+                      subtitleColor={'rgba(255,255,255,0.75)'}
                       titleColor={'#7a62d8'}
                       titleStyle={{fontSize: 15}}
                       progressValueColor={'#fff'}
@@ -43,6 +42,7 @@ const Home = ({route, navigation}) => {
                     />
                   <Text style={styles.catepuncte} >100 points until Gold Rank</Text>
               </View>
+              
               <Navbar route={route} navigation={navigation}/>
             </LinearGradient>
         </View>
@@ -125,6 +125,14 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  addButton: {
+    position: "absolute",
+    bottom: 10,
+    width: 50,
+    height: 50,
+    backgroundColor: "red"
   },
 });
 

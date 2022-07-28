@@ -8,6 +8,7 @@ import SignScreen from './Screens/SignScreen';
 import Account from './account/Account';
 import Home from './Home/Home';
 import Navbar from './navbar/Navbar';
+import CameraView from './Camera/Camera';
 import ChallengesGiven from './Challenges/ChallengesGiven';
 import ChallengesRecieved from './Challenges/ChallengesRecieved';
 
@@ -19,6 +20,7 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
+      
       if (!await AsyncStorage.getItem("logged")) setIsLogged(false);
       else setIsLogged(JSON.parse(await AsyncStorage.getItem("logged")));
     })();
@@ -27,7 +29,7 @@ export default function App() {
   return isLogged !== null && (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName={isLogged ? 'ChallengesGiven' : 'ChallengesGiven'}
+        initialRouteName={isLogged ? 'Home' : 'Initial'}
         screenOptions={{
           headerShown: false
         }}
@@ -59,12 +61,15 @@ export default function App() {
           {(props) => <SignScreen {...props} title="What's your password? " placeholder="Your password..." buttonType="Signup" type="password" nextScreen="Home" />}
         </Stack.Screen>
 
+        <Stack.Screen name="ChallengeTitle">
+          {(props) => <SignScreen {...props} title="What is the name of the challenge?" placeholder="Challenge's name..." buttonType="Continue" type="name" nextScreen="Camera" />}
+        </Stack.Screen>
+
         <Stack.Screen name="Home" component={Home} />
 
         <Stack.Screen name="ChallengesGiven" component={ChallengesGiven} />
-
         <Stack.Screen name="ChallengesRecieved" component={ChallengesRecieved} />
-
+        <Stack.Screen name="Camera" component={CameraView} />
       </Stack.Navigator>
     </NavigationContainer>
   );

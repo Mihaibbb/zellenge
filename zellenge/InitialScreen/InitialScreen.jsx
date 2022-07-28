@@ -4,13 +4,13 @@ import colors from "../colors/Colors";
 
 export default function InitialScreen({ route, navigation }) {                                       
     return (
+
         <View style={styles.container}>
             <LinearGradient
                 colors={[colors.pink, colors.purple]}
                 style={styles.background}
             >
                
-
                 {Platform.OS === "ios" || Platform.OS === "web" ? (
                     <View style={styles.loginContainer}>
                         <Text style={styles.title}>Welcome to <Text style={styles.titleName}>Zellenge!</Text></Text>

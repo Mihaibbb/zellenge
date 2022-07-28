@@ -68,8 +68,9 @@ export default function SignScreen({ route, navigation, title, buttonType, place
             console.log("after");
             const { success, token } = await request.json();
             if (success) {
+                console.log(params);
                 await AsyncStorage.setItem("token", token);
-                await AsyncStorage.setItem("logged", true);
+                await AsyncStorage.setItem("logged", JSON.stringify(true));
                 await AsyncStorage.setItem("username", username);
                 await AsyncStorage.setItem("email", email);
                 await AsyncStorage.setItem("name", name);
@@ -126,7 +127,8 @@ const styles = StyleSheet.create({
         flex: 1,
         width: "100%",
         height: "100%",
-        marginTop: 50
+        marginTop: 50,
+        maxWidth: "90%"
     },
 
     input: {

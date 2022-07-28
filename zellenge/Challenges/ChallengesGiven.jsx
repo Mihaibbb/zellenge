@@ -2,6 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { View, Platform, ScrollView, StyleSheet, Text,Pressable } from "react-native";
 import colors from "../colors/Colors";
 import Navbar from '../navbar/Navbar';
+import { Feather } from "@expo/vector-icons";
 
 export default function ChallengesGiven({route, navigation}) {
 
@@ -13,17 +14,13 @@ export default function ChallengesGiven({route, navigation}) {
             >
               <Text style={styles.title}>Challenges Given</Text> 
               <View style={styles.card}>
-              <Pressable style={styles.challenge} >
-                <Text style={styles.text}>Challenge 1</Text>
-            </Pressable>
-
-            <Pressable style={styles.challenge} >
-                <Text style={styles.text}>Challenge 2</Text>
-            </Pressable>
+            
               </View>
               <Navbar route={route} navigation={navigation}/>
+              <Pressable style={styles.addButton} onPress={() => navigation.navigate("ChallengeTitle")}>
+                <Feather name="plus" size={40} color="rgba(0, 0, 0, .8)" />
+              </Pressable>
             </LinearGradient>
-           
         </View>
         
     );
@@ -36,11 +33,12 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'black',
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: 'black',
     },
+
     challenge:{
         marginTop:15,
         marginBottom:450,
@@ -53,11 +51,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 50
     },
+
     background: {
         width: '100%',
         height: '100%',
 
     },
+
     card:{
         marginTop: 15,
         width: "100%",
@@ -69,6 +69,18 @@ const styles = StyleSheet.create({
         alignItems: "center", 
         justifyContent:"center",
         borderRadius: 20
+    },
+
+    addButton: {
+        backgroundColor: "rgba(255, 255, 255, .7)",
+        width: 60,
+        height: 60,
+        position: "absolute",
+        bottom: "10%",
+        right: 20,
+        justifyContent: "center",
+        alignItems: 'center',
+        borderRadius: 50
     },
 
     title: {
