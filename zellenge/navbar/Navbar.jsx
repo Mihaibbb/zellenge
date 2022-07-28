@@ -1,34 +1,36 @@
-import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
+import { StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
+const Navbar = () => (
+    <View style={styles.container}>
+      <View style={styles.bottomView}>
+        <Ionicons name="home-outline" size={40} color="white" />
+        <Ionicons name="cloud-upload-outline" size={32} color="white" />
+        <Ionicons name="cloud-download-outline" size={32} color="white" />
+        <Ionicons name="body-outline" size={32} color="white" />
+      </View >
     </View>
-  );
-}
+);
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: "relative"
+  },
+  bottomView: {
+      backgroundColor:'rgba(0,0,0,0.8)',
+      width: "100%",
+      height:"100%",
+      maxHeight:45, 
+      position: "absolute",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      bottom:0
+  
+  }
+});
 
-const Tab = createBottomTabNavigator();
-
-const Navbar = ()  => {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-}
 export default Navbar;

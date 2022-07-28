@@ -7,12 +7,9 @@ import InitialScreen from './InitialScreen/InitialScreen';
 import SignScreen from './Screens/SignScreen';
 import Account from './account/Account';
 import Home from './Home/Home';
-<<<<<<< HEAD
 import Navbar from './navbar/Navbar';
-=======
 import ChallengesGiven from './Challenges/ChallengesGiven';
 import ChallengesRecieved from './Challenges/ChallengesRecieved';
->>>>>>> a1b84817bd05fb42efc18b35f3c34ee0ea84ec1f
 
 const Stack = createNativeStackNavigator();
 
@@ -22,25 +19,22 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      setIsLogged(JSON.parse(await AsyncStorage.getItem("logged")));
+      if (!await AsyncStorage.getItem("logged")) setIsLogged(false);
+      else setIsLogged(JSON.parse(await AsyncStorage.getItem("logged")));
     })();
   }, []);
 
   return isLogged !== null && (
     <NavigationContainer>
       <Stack.Navigator 
-<<<<<<< HEAD
-        initialRouteName={isLogged ? 'Navbar' : 'Navbar'}
-=======
-        initialRouteName={!isLogged ? 'ChallengesGiven' : 'ChallengesGiven'}
->>>>>>> a1b84817bd05fb42efc18b35f3c34ee0ea84ec1f
+        initialRouteName={isLogged ? 'ChallengesGiven' : 'ChallengesGiven'}
         screenOptions={{
           headerShown: false
         }}
       >
     
         <Stack.Screen name="Initial" component={InitialScreen}/>
-        <Stack.Screen name="Initial" component={Navbar}/>
+        <Stack.Screen name="Navbar" component={Navbar}/>
         <Stack.Screen name="Account" component={Account}/>
         <Stack.Screen name="EmailLogin">
           {(props) => <SignScreen {...props} title="What's your email? " placeholder="Your email" buttonType="Continue" type="email" nextScreen="PasswordLogin" />}

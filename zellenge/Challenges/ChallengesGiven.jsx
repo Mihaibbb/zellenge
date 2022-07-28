@@ -4,11 +4,6 @@ import colors from "../colors/Colors";
 
 export default function ChallengesGiven() {
 
-    const [challengesGiven, setChallengesGiven] = useState([]);
-
-    const getChallengesGiven = async () => {
-
-    };
 
 
     return (
@@ -30,15 +25,13 @@ export default function ChallengesGiven() {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: '100%',
-    
+        height: 100
     },
 
     background: {
         width: '100%',
-        minHeight: '100%',
-       
-        
+        height: '100%',
+
     },
 
     title: {
