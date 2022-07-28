@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
       backgroundColor:'rgba(0,0,0,0.49)',
       width: "100%",
       height:"100%",
-      maxHeight:45, 
+      maxHeight:55, 
       alignItems:'center',
       position: "absolute",
       flexDirection: "row",

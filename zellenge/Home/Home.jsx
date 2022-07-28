@@ -41,11 +41,11 @@ const Home = ({route, navigation}) => {
                       activeStrokeSecondaryColor={'#5fe3bb'}
                       delay={50}
                     />
+                  <Text style={styles.catepuncte} >100 points until Gold Rank</Text>
               </View>
               <Navbar route={route} navigation={navigation}/>
             </LinearGradient>
         </View>
-        
       
       
   );
@@ -56,6 +56,13 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%'
+  },
+  catepuncte:{
+    marginTop:5,
+    alignSelf:'center',
+    fontSize: 10,
+    color: 'rgba(255,255,255,0.75 )',
+    fontWeight: "bold"
   },
   card:{
       marginTop: 15,

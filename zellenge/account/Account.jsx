@@ -48,7 +48,7 @@ export default class Account extends Component {
         <Pressable style={styles.badges} >
                 <Text style={styles.text}>Your Badges</Text>
             </Pressable>
-
+                 <Text style={styles.nuai}> You don't have any badges yet </Text> 
             <Pressable style={styles.button} >
                 <Text style={styles.text}>Your Memories</Text>
             </Pressable>
@@ -68,10 +68,9 @@ export default class Account extends Component {
                     />
               
              </LinearGradient>
-            <View>
-              <Text>SELECTED DATE:{ startDate }</Text>
-            
-            </View>
+             <Pressable style={styles.logout} >
+                <Text style={styles.text}>Log out</Text>
+            </Pressable>
         
       </View>
       <Navbar route={this.props.route} navigation={this.props.navigation} />
@@ -83,6 +82,24 @@ export default class Account extends Component {
 const styles = StyleSheet.create({
   container: {
    backgroundColor: 'black'
+  },
+  logout:{
+    marginTop:55,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'white',
+    borderRadius: 50
+  },
+  nuai:{
+    color: 'white',
+    fontSize: 15,
+    fontWeight: "300",
+    alignSelf:'center',
+    marginBottom:250
   },
   profil:{
     marginLeft:20,
@@ -141,7 +158,7 @@ const styles = StyleSheet.create({
   },
   badges:{
     marginTop:15,
-    marginBottom:450,
+    marginBottom:180,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
