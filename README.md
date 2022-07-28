@@ -83,11 +83,11 @@ You can join today and create a challenge for someone, or, if you are brave enou
 
 These are the main frameworks we used for the app:
 
-* React-Native pentru frontend
-* Echo
-* NodeJS pentru backend
-* MongoDB pentru baza de date
-* Cloudinary pentru stocare in cloud
+* React-Native for front-end
+* Echo 
+* NodeJS for back-end
+* MongoDB for data-base
+* Cloudinary for cloud services
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
