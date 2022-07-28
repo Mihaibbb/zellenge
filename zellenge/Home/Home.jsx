@@ -3,8 +3,9 @@ import {View, ScrollView, StyleSheet, Text, Platform } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import { LinearGradient } from "expo-linear-gradient";
 import colors from "../colors/Colors";
+import Navbar from '../navbar/Navbar';
 
-const Home = () => {
+const Home = ({route, navigation}) => {
   return (
       <View  style={styles.container}>
           <LinearGradient
@@ -41,6 +42,7 @@ const Home = () => {
                       delay={50}
                     />
               </View>
+              <Navbar route={route} navigation={navigation}/>
             </LinearGradient>
         </View>
         

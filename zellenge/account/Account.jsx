@@ -5,6 +5,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import colors from "../colors/Colors";
 import Moment from 'moment';
 import photo from '../img/nouserphoto.png'; 
+import Navbar from '../navbar/Navbar';
+
 
 
 export default class Account extends Component {
@@ -28,7 +30,7 @@ export default class Account extends Component {
     const startDate = selectedStartDate ? selectedStartDate.toString() : '';
     return (
         
-      <ScrollView style={styles.container}>
+      <ScrollView  style={styles.container}>
 
             <View style={styles.centru}>
               <Image source={photo} style={styles.poza}/> 
@@ -64,11 +66,15 @@ export default class Account extends Component {
                     
                 onDateChange={this.onDateChange}
                     />
+              
              </LinearGradient>
-        <View>
-          <Text>SELECTED DATE:{ startDate }</Text>
-        </View>
+            <View>
+              <Text>SELECTED DATE:{ startDate }</Text>
+            
+            </View>
+        
       </View>
+      <Navbar route={this.props.route} navigation={this.props.navigation} />
       </ScrollView>
     );
   }

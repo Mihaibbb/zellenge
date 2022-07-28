@@ -34,7 +34,6 @@ export default function App() {
       >
     
         <Stack.Screen name="Initial" component={InitialScreen}/>
-        <Stack.Screen name="Navbar" component={Navbar}/>
         <Stack.Screen name="Account" component={Account}/>
         <Stack.Screen name="EmailLogin">
           {(props) => <SignScreen {...props} title="What's your email? " placeholder="Your email" buttonType="Continue" type="email" nextScreen="PasswordLogin" />}
