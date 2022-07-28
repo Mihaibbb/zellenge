@@ -25,7 +25,7 @@
  <p align="center">
     Increase your outdoor skills every day!
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Mihaibbb/zellenge"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/Mihaibbb/zellenge">View Demo</a>
